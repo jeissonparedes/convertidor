@@ -1,0 +1,112 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int main(int argc, char *argv[]) {
+	int num1=0, opcion;
+	char numR[100];
+	int valorR[100];
+	int n,x,num=0;
+	printf("\n1. Convertir de números arábigos a romanos");
+	printf("\n2. Convertir de números romanos a arábigos");
+	printf("\nSelecciona una opción: ");
+	scanf("%d", &opcion);
+	if (opcion==1)
+	{
+		printf("Escriba un número arábigo para pasarlo a números romanos: ");
+		scanf("%d", &num1);
+	
+		while (num1>=1||num1<=100)
+		{
+			if (num1==100)
+			{
+				printf("C");
+				num1=num1-100;
+			}
+			if (num1>=90)
+			{
+				printf("XC");
+				num1=num1-90;
+			}
+			if (num1>=50)
+			{
+				printf("L");
+				num1=num1-50;
+			}
+			if (num1>=40)
+			{
+				printf("XL");
+				num1=num1-40;
+			}
+			while (num1>=10)
+			{
+				printf("X");
+				num1=num1-10;
+			}
+			if (num1>=9)	
+			{
+				printf("IX");
+				num1=num1-9;
+			}
+			if (num1>=5)
+			{
+				printf("V");
+				num1=num1-5;     
+			}
+			if (num1>=4)
+			{
+				printf("IV");
+				num1=num1-4;
+			}
+			if (num1>=1)
+			{
+				printf("I");
+				num1=num1-1;
+			}
+		}
+	}
+	if (opcion==2)
+	{
+	printf("Escriba un número romano para pasarlo a numero arábigo: ");
+	scanf("%s", &numR);
+	n=strlen(numR);
+	for(x=0;x<n;x++)
+	{
+		if(numR[x]=='I'||numR[x]=='i')
+		{
+			valorR[x]=1;
+		}
+		if(numR[x]=='V'||numR[x]== 'v')
+		{
+			valorR[x]=5;
+		}
+		if(numR[x]=='X'||numR[x]== 'x')
+		{
+			valorR[x]=10;
+		}
+		if(numR[x]=='L'||numR[x]== 'l')
+		{
+			valorR[x]=50;
+		}
+		if(numR[x]=='C'||numR[x]=='c')
+		{
+			valorR[x]=100;
+		}
+	}
+	for(x=0;x<n;x++)
+	{
+		if(x==n-1)
+		{
+			num+=valorR[x];
+		}
+		else
+		   if(numR[x]>=numR[x+1])
+		   {
+			   num+=valorR[x];
+		   }
+		   else
+			  num-=valorR[x];
+	}
+	printf("%d\n",num);
+	}
+return 0;
+}
